@@ -9,7 +9,8 @@ var get_first_ten_releases_from_api = new Promise(function (resolve, reject) {
     let request = new XMLHttpRequest();
     let downloads = []
 
-    get_versions = 'https://api.github.com/repos' + url.pathname + "?&page=1&per_page=10"
+    get_versions = 'https://api.github.com/repos' + url.pathname +
+                   "?&page=1&per_page=10"
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             response = JSON.parse(request.responseText);
@@ -22,7 +23,8 @@ var get_first_ten_releases_from_api = new Promise(function (resolve, reject) {
             }
             resolve(downloads)
         } else if (request.status != 200 && request.status != 0) {
-            var reason = new Error("Status error retrieving releases from API: " + request.status);
+            var reason = new Error("Status error retrieving releases from API: "
+                                   + request.status);
             reject(reason)
         }
     };
@@ -36,11 +38,17 @@ function add_download_count_first_page(download) {
     let releases = document.querySelectorAll('.release-entry')
 
     for (i = 0, len = releases.length; i < len + 1; i++) {
-        assets = releases[i].getElementsByClassName('d-flex flex-justify-between py-1 py-md-2 Box-body px-2')
+        assets = releases[i]
+                .getElementsByClassName('d-flex flex-justify-between py-1 \
+                                        py-md-2 Box-body px-2')
 
         for (j = 0, len = assets.length; j < len; j++) {
-            asset_size = assets[j].getElementsByClassName('text-gray flex-shrink-0').item(1).innerText
-            assets[j].getElementsByClassName('text-gray flex-shrink-0').item(1).innerText = asset_size + " (" + download.shift() + ")"
+            asset_size = assets[j]
+                         .getElementsByClassName('text-gray flex-shrink-0')
+                         .item(1).innerText
+            assets[j].getElementsByClassName('text-gray flex-shrink-0')
+                     .item(1).innerText = asset_size +
+                                         " (" + download.shift() + ")"
         }
     }
 }
@@ -53,7 +61,8 @@ function get_release_from_api(tag){
         let request = new XMLHttpRequest();
         let downloads = []
 
-        get_versions = 'https://api.github.com/repos' + url.pathname + "/tags/" + tag.slice(1)
+        get_versions = 'https://api.github.com/repos' + url.pathname +
+                       "/tags/" + tag.slice(1)
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 response = JSON.parse(request.responseText);
@@ -63,7 +72,8 @@ function get_release_from_api(tag){
                 }
                 resolve(downloads)
             } else if (request.status != 200 && request.status != 0) {
-                var reason = new Error("Status error retrieving releases from API: " + request.status);
+                var reason = new Error("Status error retrieving releases \
+                                       from API: " + request.status);
                 reject(reason)
             }
         };
@@ -78,12 +88,16 @@ var get_release = function(tag, i){
     get_release_from_api(tag).then(function (fulfilled) {
         releases = document.querySelectorAll('.release-entry')
 
-        assets = releases[i].getElementsByClassName('d-flex flex-justify-between py-1 py-md-2 Box-body px-2')
-        tag = releases[i].getElementsByClassName('d-block mb-1').item(0).innerText
+        assets = releases[i]
+                .getElementsByClassName('d-flex flex-justify-between \
+                                        py-1 py-md-2 Box-body px-2')
+        tag = releases[i].getElementsByClassName('d-block mb-1')
+              .item(0).innerText
 
         size = fulfilled.slice(0)
         for (j = 0; j < assets.length; j++) {
-            assets[j].getElementsByClassName('text-gray flex-shrink-0').item(1).innerText += " (" + size.shift() + ")"
+            assets[j].getElementsByClassName('text-gray flex-shrink-0')
+                     .item(1).innerText += " (" + size.shift() + ")"
         }
     })
         .catch(function (error) {
@@ -98,7 +112,8 @@ function next_page(){
     let releases = document.querySelectorAll('.release-entry')
 
     for (i = 0; i < releases.length; i++) {
-        tag = releases[i].getElementsByClassName('d-block mb-1').item(0).innerText
+        tag = releases[i].getElementsByClassName('d-block mb-1')
+                         .item(0).innerText
         get_release(tag, i)
     }
 }
