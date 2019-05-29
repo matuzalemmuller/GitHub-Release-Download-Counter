@@ -1,6 +1,7 @@
 let address = document.URL
 let url = new URL(address)
 let pathnameArray = url.pathname.split("/").slice(1)
+let download_icon = String.fromCodePoint(0x2B07);
 
 //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +49,8 @@ function add_download_count_first_page(download) {
                          .item(1).innerText
             assets[j].getElementsByClassName('text-gray flex-shrink-0')
                      .item(1).innerText = asset_size +
-                                         " (" + download.shift() + ")"
+                                         " (" + download.shift() + " " +
+                                         download_icon + ")"
         }
     }
 }
@@ -97,7 +99,8 @@ var get_release = function(tag, i){
         size = fulfilled.slice(0)
         for (j = 0; j < assets.length; j++) {
             assets[j].getElementsByClassName('text-gray flex-shrink-0')
-                     .item(1).innerText += " (" + size.shift() + ")"
+                     .item(1).innerText += " (" + size.shift() + " " +
+                     download_icon + ")"
         }
     })
         .catch(function (error) {
