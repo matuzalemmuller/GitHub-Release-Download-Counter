@@ -3,7 +3,7 @@ let url = new URL(address)
 let pathnameArray = url.pathname.split("/").slice(1)
 let download_icon = String.fromCodePoint(0x2B07);
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function get_first_ten_releases_from_api(){
     return new Promise(function (resolve, reject) {
@@ -26,8 +26,8 @@ function get_first_ten_releases_from_api(){
                 }
                 resolve(downloads)
             } else if (request.status != 200 && request.status != 0) {
-                var reason = new Error("Status error retrieving releases from API: "
-                                    + request.status);
+                var reason = new Error("Status error retrieving releases from \
+                                       API: " + request.status);
                 reject(reason)
             }
         };
@@ -36,7 +36,7 @@ function get_first_ten_releases_from_api(){
     });
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function get_release_from_api(path, tag){
     return new Promise(function (resolve,reject) {
@@ -65,7 +65,7 @@ function get_release_from_api(path, tag){
     });        
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function add_download_count_first_page(download) {
     let releases = document.querySelectorAll('.release-entry')
@@ -87,7 +87,7 @@ function add_download_count_first_page(download) {
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 var get_release = function(tag, i){
     get_release_from_api(url.pathname, tag).then(function (fulfilled) {
@@ -111,10 +111,12 @@ var get_release = function(tag, i){
         });
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 var get_tag = function(tag){
-    path = '/' + pathnameArray[0] + '/' + pathnameArray[1] + '/' + pathnameArray[2]
+    path = '/' + pathnameArray[0] +
+           '/' + pathnameArray[1] +
+           '/' + pathnameArray[2]
     get_release_from_api(path, tag).then(function (fulfilled) {
 
         assets = document
@@ -133,7 +135,7 @@ var get_tag = function(tag){
         });
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function next_page(){
     let releases = document.querySelectorAll('.release-entry')
@@ -145,7 +147,7 @@ function next_page(){
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function first_page() {
     get_first_ten_releases_from_api().then(function (fulfilled) {
@@ -156,13 +158,13 @@ function first_page() {
         });
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function tag_page(){
     get_tag(pathnameArray[4])
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 if (pathnameArray[3] === "tag") {
     tag_page()
