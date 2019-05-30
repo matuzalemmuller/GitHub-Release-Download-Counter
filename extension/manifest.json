@@ -5,6 +5,7 @@
 
     "author": "Matuzalem (Mat) Muller",
     "description": "Displays download count of release assets in public GitHub repositories",
+    "homepage_url": "https://git.io/fj01m",
 
     "icons": {
         "16": "icon/icon16.png",

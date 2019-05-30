@@ -26,8 +26,8 @@ function get_first_ten_releases_from_api(){
                 }
                 resolve(downloads)
             } else if (request.status != 200 && request.status != 0) {
-                var reason = new Error("Status error retrieving releases from \
-                                       API: " + request.status);
+                msg = "Status error retrieving releases from API: " 
+                var reason = new Error(msg + request.status);
                 reject(reason)
             }
         };
@@ -55,8 +55,8 @@ function get_release_from_api(path, tag){
                 }
                 resolve(downloads)
             } else if (request.status != 200 && request.status != 0) {
-                var reason = new Error("Status error retrieving releases \
-                                       from API: " + request.status);
+                msg = "Status error retrieving releases from API: " 
+                var reason = new Error(msg + request.status);
                 reject(reason)
             }
         };
@@ -77,7 +77,7 @@ function add_download_count_first_page(download) {
         }
     }
 
-    for (i = 0; i < releases.length + 1; i++) {
+    for (i = 0; i < releases.length; i++) {
         assets = releases[i]
                 .getElementsByClassName('d-flex flex-justify-between py-1 \
                                         py-md-2 Box-body px-2')
@@ -96,7 +96,7 @@ function add_download_count_first_page(download) {
 
 //------------------------------------------------------------------------------
 
-var get_release = function(tag, i){
+function get_release(tag, i){
     get_release_from_api(url.pathname, tag).then(function (fulfilled) {
         let all_releases = document.querySelectorAll('.release-entry')
         let releases = []
@@ -119,15 +119,14 @@ var get_release = function(tag, i){
                      .item(1).innerText += " (" + size.shift() + " " +
                      download_icon + ")"
         }
-    })
-        .catch(function (error) {
-            console.log(error.message);
-        });
+    }).catch(function (error) {
+        console.error("GH Download Counter: " + error.message);
+    });
 }
 
 //------------------------------------------------------------------------------
 
-var get_tag = function(tag){
+function get_tag(tag){
     path = '/' + pathnameArray[0] +
            '/' + pathnameArray[1] +
            '/' + pathnameArray[2]
@@ -143,10 +142,9 @@ var get_tag = function(tag){
                      .item(1).innerText += " (" + download_count.shift() + " " +
                      download_icon + ")"
         }
-    })
-        .catch(function (error) {
-            console.log(error.message);
-        });
+    }).catch(function (error) {
+        console.error("GH Download Counter: " + error.message);
+    });
 }
 
 //------------------------------------------------------------------------------
@@ -175,10 +173,9 @@ function next_page(){
 function first_page() {
     get_first_ten_releases_from_api().then(function (fulfilled) {
         add_download_count_first_page(fulfilled)
-    })
-        .catch(function (error) {
-            console.log(error.message);
-        });
+    }).catch(function (error) {
+        console.error("GH Download Counter: " + error.message);
+    });
 }
 
 //------------------------------------------------------------------------------
