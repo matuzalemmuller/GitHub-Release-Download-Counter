@@ -12,4 +12,6 @@ Download count is displayed next to asset size.
 
 ## Limitations
 
-Due to [GitHub's API rate limit](https://developer.github.com/v3/#rate-limiting) the maximum of unauthenticated requests is of 60 per hour. This means that this extension will only show the download count of assets of up to 60 releases per hour.
+Due to [GitHub's API rate limit](https://developer.github.com/v3/#rate-limiting) the maximum number of unauthenticated API requests is of 60 per hour. This means that this extension can only show the download count of assets of up to 60 releases per hour.
+
+This app is intended to be used by small developers who want to see how many times their releases have been downloaded.
