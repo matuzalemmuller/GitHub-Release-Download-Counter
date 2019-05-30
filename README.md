@@ -8,7 +8,7 @@ Browser extension that displays download count of release assets in public GitHu
 
 Download count is displayed next to asset size.
 
-![](https://i.imgur.com/vNnkYRr.png)
+![](https://i.imgur.com/rJtkebi.png)
 
 ## Limitations
 
