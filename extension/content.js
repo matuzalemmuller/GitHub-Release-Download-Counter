@@ -68,9 +68,16 @@ function get_release_from_api(path, tag){
 //------------------------------------------------------------------------------
 
 function add_download_count_first_page(download) {
-    let releases = document.querySelectorAll('.release-entry')
+    let all_releases = document.querySelectorAll('.release-entry')
+    let releases = []
 
-    for (i = 0, len = releases.length; i < len + 1; i++) {
+    for (k = 0; k < all_releases.length; k++){
+        if ( all_releases[k].className.localeCompare('release-entry') == 0 ){
+            releases.push(all_releases[k])
+        }
+    }
+
+    for (i = 0; i < releases.length + 1; i++) {
         assets = releases[i]
                 .getElementsByClassName('d-flex flex-justify-between py-1 \
                                         py-md-2 Box-body px-2')
@@ -91,7 +98,14 @@ function add_download_count_first_page(download) {
 
 var get_release = function(tag, i){
     get_release_from_api(url.pathname, tag).then(function (fulfilled) {
-        releases = document.querySelectorAll('.release-entry')
+        let all_releases = document.querySelectorAll('.release-entry')
+        let releases = []
+    
+        for (k = 0; k < all_releases.length; k++){
+            if ( all_releases[k].className.localeCompare('release-entry') == 0 ){
+                releases.push(all_releases[k])
+            }
+        }
 
         assets = releases[i]
                 .getElementsByClassName('d-flex flex-justify-between \
@@ -138,12 +152,21 @@ var get_tag = function(tag){
 //------------------------------------------------------------------------------
 
 function next_page(){
-    let releases = document.querySelectorAll('.release-entry')
+    let all_releases = document.querySelectorAll('.release-entry')
+    let releases = []
+
+    for (k = 0; k < all_releases.length; k++){
+        if ( all_releases[k].className.localeCompare('release-entry') == 0 ){
+            releases.push(all_releases[k])
+        }
+    }
 
     for (i = 0; i < releases.length; i++) {
-        tag = releases[i].getElementsByClassName('d-block mb-1')
+        if (releases[i].getElementsByClassName('d-block mb-1').item(0)){
+            tag = releases[i].getElementsByClassName('d-block mb-1')
                          .item(0).innerText
-        get_release(tag.slice(1), i)
+            get_release(tag.slice(1), i)
+        }
     }
 }
 
