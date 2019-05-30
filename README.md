@@ -6,9 +6,15 @@
 
 Browser extension that displays download count of release assets in public GitHub repositories.
 
-Download count is displayed next to asset size.
-
 ![](https://i.imgur.com/rJtkebi.png)
+
+## Installation
+
+* [Firefox](https://addons.mozilla.org/en-US/firefox/addon/gh-release-download-counter/)
+
+## How it works
+
+The extension identifies that the page is displaying a release and queries the API requesting information about the release. Then, it edits the page to show the download count of each asset. The download count is displayed next to asset size.
 
 ## Limitations
 
