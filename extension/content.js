@@ -102,7 +102,7 @@ var get_release = function(tag, i){
         let releases = []
     
         for (k = 0; k < all_releases.length; k++){
-            if ( all_releases[k].className.localeCompare('release-entry') == 0 ){
+            if (all_releases[k].className.localeCompare('release-entry') == 0){
                 releases.push(all_releases[k])
             }
         }
