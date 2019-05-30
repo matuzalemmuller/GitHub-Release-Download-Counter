@@ -12,11 +12,14 @@
         "128": "icon/icon128.png"
     },
 
+    "permissions": [
+        "*://*.github.com/*",
+        "webRequest"
+    ],
+
     "content_scripts": [
         {
-          "matches": [
-            "https://github.com/*/*/releases*"
-          ],
+          "matches": ["*://github.com/*/*/releases*"],
           "js": ["content.js"]
         }
       ]
