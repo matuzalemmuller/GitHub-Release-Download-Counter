@@ -4,7 +4,7 @@
     "version": "1.0.0",
 
     "author": "Matuzalem (Mat) Muller",
-    "description": "Displays download count of release assets in public GitHub repositories",
+    "description": "Displays download count of release assets in public GitHub repositories.",
     "homepage_url": "https://git.io/fj01m",
 
     "icons": {
