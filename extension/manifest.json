@@ -14,13 +14,17 @@
     },
 
     "permissions": [
-        "*://*.github.com/*",
-        "webRequest"
+        "tabs",
+        "webRequest",
+        "*://*.github.com/*"
     ],
 
     "content_scripts": [
         {
-          "matches": ["*://github.com/*/*/releases*"],
+          "matches": [
+              "*://github.com/*/*/releases",
+              "*://github.com/*/*/releases/tag/*"
+            ],
           "js": ["content.js"]
         }
       ]
