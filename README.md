@@ -11,6 +11,7 @@ Browser extension that displays download count of release assets in public GitHu
 ## Installation
 
 * [Firefox](https://addons.mozilla.org/en-US/firefox/addon/gh-release-download-counter/)
+* [Google Chrome](https://chrome.google.com/webstore/detail/github-release-download-c/iaeggliaejjcgnfbcjkhaabikhlfekel)
 
 ## How it works
 
