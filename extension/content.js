@@ -1,10 +1,9 @@
-let address = document.URL
-let url = new URL(address)
-let pathnameArray = url.pathname.split("/").slice(1)
-let download_icon = String.fromCodePoint(0x2B07);
+const url = new URL(document.URL)
+const pathnameArray = url.pathname.split("/").slice(1)
+const download_icon = String.fromCodePoint(0x2B07);
 
 //------------------------------------------------------------------------------
-
+// Gets download count of first 10 releases from API
 function get_first_ten_releases_from_api(){
     return new Promise(function (resolve, reject) {
         
@@ -37,7 +36,7 @@ function get_first_ten_releases_from_api(){
 }
 
 //------------------------------------------------------------------------------
-
+// Gets download count of individual release from API
 function get_release_from_api(path, tag){
     return new Promise(function (resolve,reject) {
         let response = ""
@@ -66,7 +65,7 @@ function get_release_from_api(path, tag){
 }
 
 //------------------------------------------------------------------------------
-
+// Adds download count to assets in main releases page
 function add_download_count_first_page(download) {
     let all_releases = document.querySelectorAll('.release-entry')
     let releases = []
@@ -76,7 +75,6 @@ function add_download_count_first_page(download) {
             releases.push(all_releases[k])
         }
     }
-
     for (i = 0; i < releases.length; i++) {
         assets = releases[i]
                 .getElementsByClassName('d-flex flex-justify-between py-1 \
@@ -95,7 +93,7 @@ function add_download_count_first_page(download) {
 }
 
 //------------------------------------------------------------------------------
-
+// Adds download count to assets to individual releases
 function get_release(tag, i){
     get_release_from_api(url.pathname, tag).then(function (fulfilled) {
         let all_releases = document.querySelectorAll('.release-entry')
@@ -125,7 +123,7 @@ function get_release(tag, i){
 }
 
 //------------------------------------------------------------------------------
-
+// Processes get and add download count to individual release in tag page 
 function get_tag(tag){
     path = '/' + pathnameArray[0] +
            '/' + pathnameArray[1] +
@@ -148,7 +146,7 @@ function get_tag(tag){
 }
 
 //------------------------------------------------------------------------------
-
+// Processes get and add download counts to "next" releases pages
 function next_page(){
     let all_releases = document.querySelectorAll('.release-entry')
     let releases = []
@@ -169,7 +167,7 @@ function next_page(){
 }
 
 //------------------------------------------------------------------------------
-
+// Processes get and add download counts to main release page
 function first_page() {
     get_first_ten_releases_from_api().then(function (fulfilled) {
         add_download_count_first_page(fulfilled)
@@ -179,19 +177,12 @@ function first_page() {
 }
 
 //------------------------------------------------------------------------------
-
-function tag_page(){
-    get_tag(pathnameArray[4])
-}
-
-//------------------------------------------------------------------------------
-
-
-pvt = document.getElementsByClassName('Label Label--outline v-align-middle')
+// If repo is not private, add the download count to releases
+const pvt=document.getElementsByClassName('Label Label--outline v-align-middle')
 
 if (pvt.length == 0) {
     if (pathnameArray[3] === "tag") {
-        tag_page()
+        get_tag(pathnameArray[4])
     } else if (url.search === "") {
         first_page()
     } else {
