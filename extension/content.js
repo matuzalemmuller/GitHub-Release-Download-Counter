@@ -186,10 +186,15 @@ function tag_page(){
 
 //------------------------------------------------------------------------------
 
-if (pathnameArray[3] === "tag") {
-    tag_page()
-} else if (url.search === "") {
-    first_page()
-} else {
-    next_page()
+
+pvt = document.getElementsByClassName('Label Label--outline v-align-middle')
+
+if (pvt.length == 0) {
+    if (pathnameArray[3] === "tag") {
+        tag_page()
+    } else if (url.search === "") {
+        first_page()
+    } else {
+        next_page()
+    }
 }

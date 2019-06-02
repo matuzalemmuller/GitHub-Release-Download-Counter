@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "GitHub Release Download Counter",
-    "version": "1.0.0",
+    "version": "1.0.1",
 
     "author": "Matuzalem (Mat) Muller",
     "description": "Displays download count of release assets in public GitHub repositories.",
@@ -22,9 +22,8 @@
     "content_scripts": [
         {
           "matches": [
-              "*://github.com/*/*/releases",
-              "*://github.com/*/*/releases/tag/*"
-            ],
+              "*://github.com/*/*/releases*"
+           ],
           "js": ["content.js"]
         }
       ]
