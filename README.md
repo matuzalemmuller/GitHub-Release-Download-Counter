@@ -1,9 +1,5 @@
 # GitHub Release Download Counter
 
-*Hosted at [GitHub](https://github.com/matuzalemmuller/GitHub-Release-Download-Counter) and mirrored to [GitLab](https://gitlab.com/matuzalemmuller/GitHub-Release-Download-Counter).*
-
-## Description
-
 Browser extension that displays download count of release assets in public GitHub repositories.
 
 ![](https://i.imgur.com/rJtkebi.png)
