@@ -1,4 +1,6 @@
-# GitHub Release Download Counter
+# [DISCONTINUED] GitHub Release Download Counter
+
+**Attention: Due to recent changes in GitHub's web layout & API and my lack of spare time to support this extension, I decided to drop support for this addon.**
 
 Browser extension that displays download count of release assets in public GitHub repositories.
 
